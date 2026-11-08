@@ -1,0 +1,140 @@
+# ============================================================
+#  LanchaYa Iquitos - API REST
+#  Extensión: REST Client (humao.rest-client)
+#  Haz clic en "Send Request" encima de cada petición.
+#  El backend debe estar corriendo: cd backend && npm run dev
+#  URL base: http://localhost:3000
+# ============================================================
+
+@host = http://localhost:3000/api
+@id = 1
+
+###
+# 1) Saludo del servidor
+GET {{host}}/health
+
+###
+# 2) Listar todas las salidas (ordenadas por fecha)
+GET {{host}}/salidas
+
+###
+# 3) Filtros
+#    ?destino=  ?fecha=YYYY-MM-DD  ?tipo=lancha|rapido|deslizador
+
+### Filtrar por destino
+GET {{host}}/salidas?destino=Nauta
+
+### Filtrar por fecha
+GET {{host}}/salidas?fecha=2026-11-09
+
+### Filtrar por tipo
+GET {{host}}/salidas?tipo=rapido
+
+### Filtros combinados
+GET {{host}}/salidas?destino=Nauta&tipo=rapido
+
+###
+# 4) Detalle de una salida (200 o 404)
+GET {{host}}/salidas/{{id}}
+
+###
+# 5) Destinos sin repetir (llenan el select del frontend)
+GET {{host}}/destinos
+
+###
+# 6) Crear salida (201) - devuelve el objeto con id
+POST {{host}}/salidas
+Content-Type: application/json
+
+{
+  "empresa": "Prueba desde VSCode",
+  "embarcacion": "Lancha Demo",
+  "tipo": "rapido",
+  "destino": "Nauta",
+  "puerto": "Puerto Productores",
+  "fechaHora": "2026-12-15T07:00",
+  "duracionHoras": 2,
+  "precio": 35,
+  "cupos": 25
+}
+
+###
+# 7) Actualizar salida (200 o 404)
+#    Cambia @id arriba por el id que devolvió el POST
+PUT {{host}}/salidas/13
+Content-Type: application/json
+
+{
+  "empresa": "Prueba actualizada",
+  "embarcacion": "Lancha Demo II",
+  "tipo": "lancha",
+  "destino": "Requena",
+  "puerto": "Puerto Henry",
+  "fechaHora": "2026-12-15T08:30",
+  "duracionHoras": 4,
+  "precio": 55,
+  "cupos": 18
+}
+
+###
+# 8) Eliminar salida (204 o 404)
+DELETE {{host}}/salidas/13
+
+# ============================================================
+#  PRUEBAS DE VALIDACIÓN (deben devolver 400)
+# ============================================================
+
+###
+# Falta empresa
+POST {{host}}/salidas
+Content-Type: application/json
+
+{
+  "destino": "Nauta",
+  "puerto": "Puerto Henry",
+  "tipo": "lancha",
+  "fechaHora": "2026-12-15T07:00",
+  "precio": 20
+}
+
+###
+# Precio en 0
+POST {{host}}/salidas
+Content-Type: application/json
+
+{
+  "empresa": "X",
+  "destino": "Nauta",
+  "puerto": "Puerto Henry",
+  "tipo": "lancha",
+  "fechaHora": "2026-12-15T07:00",
+  "precio": 0
+}
+
+###
+# Tipo inválido
+POST {{host}}/salidas
+Content-Type: application/json
+
+{
+  "empresa": "X",
+  "destino": "Nauta",
+  "puerto": "Puerto Henry",
+  "tipo": "bote",
+  "fechaHora": "2026-12-15T07:00",
+  "precio": 20
+}
+
+###
+# Fecha en el pasado
+POST {{host}}/salidas
+Content-Type: application/json
+
+{
+  "empresa": "X",
+  "destino": "Nauta",
+  "puerto": "Puerto Henry",
+  "tipo": "lancha",
+  "fechaHora": "2020-01-01T07:00",
+  "precio": 20
+}

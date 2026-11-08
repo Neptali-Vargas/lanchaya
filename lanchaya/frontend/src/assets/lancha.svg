@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true">
+  <defs>
+    <linearGradient id="agua" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#35bceb" />
+      <stop offset="100%" stop-color="#173b50" />
+    </linearGradient>
+  </defs>
+  <!-- Agua -->
+  <path d="M0 44 Q16 36 32 44 T64 44 V64 H0 Z" fill="url(#agua)" />
+  <!-- Casco de la lancha -->
+  <path d="M14 44 Q20 34 32 34 Q44 34 50 44 L50 40 Q46 36 32 36 Q18 36 14 40 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" />
+  <!-- Detalle del casco -->
+  <path d="M16 42 Q24 38 32 38 Q40 38 48 42" fill="none" stroke="#cbd5de" stroke-width="2" stroke-linecap="round" />
+  <!-- Cubierta -->
+  <rect x="20" y="34" width="24" height="6" rx="2" fill="#f8fafc" stroke="#94a3b8" stroke-width="1" />
+  <!-- Cabina / toldo -->
+  <path d="M28 34 Q32 26 36 34" fill="none" stroke="#35bceb" stroke-width="3" stroke-linecap="round" />
+  <!-- Vela pequeña -->
+  <path d="M32 34 L34 24 L36 34" fill="#ffffff" stroke="#35bceb" stroke-width="2" />
+  <!-- Olas decorativas -->
+  <path d="M8 48 Q16 44 24 48 T40 48 T56 48" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  <path d="M4 52 Q12 48 20 52 T36 52 T52 52" fill="none" stroke="#cbd5de" stroke-width="2" stroke-linecap="round" opacity="0.4" />
+</svg>
